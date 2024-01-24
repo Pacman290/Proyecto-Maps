@@ -8,6 +8,12 @@
     <form>
         <input type="text" placeholder="ingrese origen" id="origenInput">
         <input type="text" placeholder="ingrese destino" id="destinoInput">
+        <input type="radio" name="trafico" id="traficoOptimista" value="optimistic" />
+        <label for="traficoOptimista">Me siento optimista</label>
+        <input type="radio" name="trafico" id="traficoNormal" value="bestguess" checked/>
+        <label for="traficoNormal">Va a ser como siempre</label>
+        <input type="radio" name="trafico" id="traficoPesimista" value="pessimistic"/>
+        <label for="traficoPesimista">El tráfico estará infernal</label>
         <input type="button" value="Enviar" id="enviarLocalidades">
     </form>
     <h1 id="tiempo"></h1>
