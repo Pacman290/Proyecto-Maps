@@ -5,6 +5,7 @@ let trafico = 'bestguess';
 
 function iniciar(){
   document.getElementById("enviarLocalidades").addEventListener("click", consultarDistanciaTiempo, false);
+  document.getElementById("fechaYHora").min= fechaActualFormateada();
   //cambia el valor del trafico segun el elemento seleccionado del input radio
   const traficoOptimista= document.getElementById("traficoOptimista");
   const traficoNormal= document.getElementById("traficoNormal");
@@ -33,7 +34,7 @@ function cambiarTrafico(traficoSeleccionado){
 
 function consultarDistanciaTiempo(){
   const options ={
-    departureTime: new Date,
+    departureTime: getFechaUsuario(),
     trafficModel: trafico
   }
   // chequea que los campos estén completos
@@ -66,4 +67,47 @@ function mostrarResultado(response, status) {
   } else{
     console.log('hubo un problema en la consulta');
   }
+}
+
+function fechaActualFormateada(){
+  const date= new Date();
+  return ""+date.getFullYear()+ "-"+ _getMonth(date)+"-"+_getDate(date)+"T"+_getHours(date)+":"+_getMinutes(date);
+}
+
+function _getMonth(date){
+  const mes= date.getMonth();
+  if(mes<9){
+    return "0"+(mes+1);
+  }
+  return (mes+1);
+}
+
+function _getDate(date){
+  const dia= date.getDate();
+  if(dia<10){
+    return "0"+dia;
+  }
+  return dia;
+}
+
+function _getHours(date){
+  const hora= date.getHours();
+  if(hora<10){
+    return "0"+hora;
+  }
+  return hora;
+}
+
+
+function _getMinutes(date){
+  const minutos= date.getMinutes();
+  if(minutos<10){
+    return "0"+minutos;
+  }
+  return minutos;
+}
+
+function getFechaUsuario(){
+  const fecha = document.getElementById("fechaYHora").value;
+  return new Date(fecha);
 }
